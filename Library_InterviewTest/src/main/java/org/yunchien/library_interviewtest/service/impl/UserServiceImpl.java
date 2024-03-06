@@ -43,6 +43,25 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User login(UserLoginRequest userLoginRequest) {
-        return null;
+        User user = userDao.getUserByPhone((userLoginRequest.getPhoneNumber()));
+
+        // 檢查phone 尚未註冊
+        if(user == null){
+            log.warn("該 phone {} 尚未被註冊", userLoginRequest.getPhoneNumber());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+
+        // 使用 MD5 生成密碼雜湊值
+        String hashdPassword = DigestUtils.md5DigestAsHex(userLoginRequest.getPassword().getBytes());
+
+        // 比較密碼
+        if (user.getPassword().equals(hashdPassword)) {
+            return user;
+        } else {
+            // 若密碼部正確
+            log.warn("phone {} 的密碼不正確", userLoginRequest.getPhoneNumber());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+
     }
 }

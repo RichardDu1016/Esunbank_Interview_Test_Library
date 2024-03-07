@@ -1,11 +1,12 @@
 package org.yunchien.library_interviewtest.dto;
 
 import java.util.Date;
+import java.util.List;
 
 public class BorrowReturnRequest {
 
     private Integer userId;
-    private Integer inventoryId;
+    private List<Integer> inventoryIds;
 
 
 
@@ -17,12 +18,11 @@ public class BorrowReturnRequest {
         this.userId = userId;
     }
 
-
-    public Integer getInventoryId() {
-        return inventoryId;
+    public List<Integer> getInventoryIds() {
+        return inventoryIds;
     }
 
-    public void setInventoryId(Integer inventoryId) {
-        this.inventoryId = inventoryId;
+    public void setInventoryIds(List<Integer> inventoryIds) {
+        this.inventoryIds = inventoryIds;
     }
 }

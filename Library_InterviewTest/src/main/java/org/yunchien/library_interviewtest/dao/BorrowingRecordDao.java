@@ -3,11 +3,13 @@ package org.yunchien.library_interviewtest.dao;
 import org.yunchien.library_interviewtest.dto.BorrowReturnRequest;
 import org.yunchien.library_interviewtest.model.BorrowingRecord;
 
+import java.util.List;
+
 public interface BorrowingRecordDao {
 
-    void createRecord(BorrowReturnRequest borrowReturnRequest);
+    BorrowingRecord createRecord(Integer userId, Integer inventoryId);
 
-    BorrowingRecord findRecordByUserIdAndInventoryId(BorrowReturnRequest borrowReturnRequest);
+    BorrowingRecord findRecordByUserIdAndInventoryId(Integer userId, Integer inventoryId);
 
-    void returnRecord(BorrowReturnRequest borrowReturnRequest);
+    BorrowingRecord returnRecord(Integer userId, Integer inventoryId);
 }

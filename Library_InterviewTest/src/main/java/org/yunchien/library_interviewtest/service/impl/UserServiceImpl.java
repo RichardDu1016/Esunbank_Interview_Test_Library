@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.server.ResponseStatusException;
 import org.yunchien.library_interviewtest.dao.UserDao;
@@ -20,6 +21,7 @@ public class UserServiceImpl implements UserService {
     UserDao userDao;
 
     @Override
+    @Transactional
     public Integer register(UserRegisterRequest userRegisterRequest) {
         // 檢查註冊的email
         User user = userDao.getUserByPhone(userRegisterRequest.getPhoneNumber());

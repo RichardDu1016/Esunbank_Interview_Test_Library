@@ -19,20 +19,20 @@ public class InventoryDaoImpl implements InventoryDao {
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @Override
-    public void borrowUpdInv(BorrowReturnRequest borrowReturnRequest) {
+    public void borrowUpdInv(Integer inventoryId) {
 
         String sql = "UPDATE inventory SET status = 'not available' WHERE inventory_id = :inventoryId";
         Map<String, Object> map = new HashMap<>();
-        map.put("isbn", borrowReturnRequest.getInventoryId());
+        map.put("inventoryId", inventoryId);
         namedParameterJdbcTemplate.update(sql,map);
 
     }
 
     @Override
-    public void returnUpdInv(BorrowReturnRequest borrowReturnRequest) {
+    public void returnUpdInv(Integer inventoryId) {
         String sql = "UPDATE inventory SET status = 'available' WHERE inventory_id = :inventoryId";
         Map<String, Object> map = new HashMap<>();
-        map.put("isbn", borrowReturnRequest.getInventoryId());
+        map.put("inventoryId", inventoryId);
         namedParameterJdbcTemplate.update(sql,map);
     }
 

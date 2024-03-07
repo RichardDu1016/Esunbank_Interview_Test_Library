@@ -1,7 +1,6 @@
 CREATE DATABASE library;
 
 -- user
-
 CREATE TABLE user
 (
     user_id           INT          NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -13,7 +12,6 @@ CREATE TABLE user
 );
 
 -- book
-
 CREATE TABLE book
 (
     isbn              VARCHAR(256) NOT NULL PRIMARY KEY,
@@ -24,7 +22,6 @@ CREATE TABLE book
 
 
 -- inventory
-
 CREATE TABLE inventory
 (
     inventory_id      INT          NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -44,7 +41,7 @@ CREATE TABLE borrowing_record
     user_id           INT          NOT NULL ,
     inventory_id      INT          NOT NULL ,
     borrowing_time    TIMESTAMP    NOT NULL ,
-    return_time       TIMESTAMP    NOT NULL ,
+    return_time       TIMESTAMP    ,
     CONSTRAINT borrowing_record_PK PRIMARY KEY (user_id, inventory_id),
     CONSTRAINT borrowing_record_FOREIGN_KEY1 FOREIGN KEY (user_id) REFERENCES `user`(user_id),
     CONSTRAINT borrowing_record_FOREIGN_KEY2 FOREIGN KEY (inventory_id) REFERENCES inventory(inventory_id)

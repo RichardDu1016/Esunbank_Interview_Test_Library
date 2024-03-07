@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import org.yunchien.library_interviewtest.dao.InventoryDao;
 import org.yunchien.library_interviewtest.dto.BorrowReturnRequest;
 import org.yunchien.library_interviewtest.model.Inventory;
@@ -17,13 +18,15 @@ public class InventoryServiceImpl implements InventoryService {
     InventoryDao inventoryDao;
 
     @Override
-    public void borrowUpdInv(BorrowReturnRequest borrowReturnRequest) {
-        inventoryDao.borrowUpdInv(borrowReturnRequest);
+    @Transactional
+    public void borrowUpdInv(Integer inventoryId) {
+        inventoryDao.borrowUpdInv(inventoryId);
     }
 
     @Override
-    public void returnUpdInv(BorrowReturnRequest borrowReturnRequest) {
-        inventoryDao.returnUpdInv(borrowReturnRequest);
+    @Transactional
+    public void returnUpdInv(Integer inventoryId) {
+        inventoryDao.returnUpdInv(inventoryId);
     }
 
     @Override

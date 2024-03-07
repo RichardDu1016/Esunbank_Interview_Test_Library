@@ -5,8 +5,8 @@ import org.yunchien.library_interviewtest.model.Inventory;
 
 public interface InventoryDao {
 
-    void borrowUpdInv(BorrowReturnRequest borrowReturnRequest);
-    void returnUpdInv(BorrowReturnRequest borrowReturnRequest);
+    void borrowUpdInv(Integer inventoryId);
+    void returnUpdInv(Integer inventoryId);
 
     Inventory findInvById(Integer inventoryId);
 }
